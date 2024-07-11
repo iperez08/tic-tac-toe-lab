@@ -85,31 +85,37 @@ const updateMessage = () => {
 
 const handleClick = (event) => {
     let sqrIdx = event.target.id
-    if (sqrIdx === NaN ||
+    if (sqrIdx === "" ||
         board[sqrIdx] === 'X' || 
         board[sqrIdx] === 'O' ||
         winner === true) {
         return
     } else {
         // some other functions
+        console.log(board,turn,winner,tie)
         placePiece(sqrIdx)
+        console.log(board,turn,winner,tie)
         checkForWinner()
+        console.log(board,turn,winner,tie)
         checkForTie()
+        console.log(board,turn,winner,tie)
         switchPlayerTurn()
+        console.log(board,turn,winner,tie)
         render()
+        console.log(board,turn,winner,tie)
     }
 }
 
-const placePiece = (idx) => {
-    board[idx] = turn
+const placePiece = (index) => {
+    board[index] = turn
 }
 
-// is this a bug? shouldnt i be checking all possible iterates of array?
 const checkForWinner = () => {
-    for (let i = 0; i < board.length; i++) {
-        if (board[0] !== '' &&
-            board[0] === board[1] &&
-            board[1] === board[2]) winner = true
+    for (let i = 0; i < winningCombos.length; i++) {
+        if (board[winningCombos[i][0]] !== '' &&
+            board[winningCombos[i][0]] === board[winningCombos[i][1]] &&
+            board[winningCombos[i][0]] === board[winningCombos[i][2]])
+            winner = true
     }
 }
 
@@ -120,7 +126,8 @@ const isItBlank = () => {
 }
 
 const checkForTie = () => {
-    if (winner === true || isItBlank === true) {
+    console.log(isItBlank())
+    if (winner === true || isItBlank !== true) {
         return
     } else tie = true
     }
@@ -140,5 +147,5 @@ const switchPlayerTurn = () => {
 boardSquares.addEventListener('click',handleClick)
 resetBtnEl.addEventListener('click',init)
 
-console.log(init)
+
 init()
