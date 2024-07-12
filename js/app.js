@@ -72,6 +72,7 @@ const updateBoard = () => {
         let idx = board.indexOf(value)
         let square = squareEls[idx]
         square.innerText = board[idx]
+        console.log(square.innerText)
     })
 }
 
@@ -92,17 +93,11 @@ const handleClick = (event) => {
         return
     } else {
         // some other functions
-        console.log(board,turn,winner,tie)
         placePiece(sqrIdx)
-        console.log(board,turn,winner,tie)
         checkForWinner()
-        console.log(board,turn,winner,tie)
         checkForTie()
-        console.log(board,turn,winner,tie)
         switchPlayerTurn()
-        console.log(board,turn,winner,tie)
         render()
-        console.log(board,turn,winner,tie)
     }
 }
 
@@ -126,7 +121,6 @@ const isItBlank = () => {
 }
 
 const checkForTie = () => {
-    console.log(isItBlank())
     if (winner === true || isItBlank !== true) {
         return
     } else tie = true
