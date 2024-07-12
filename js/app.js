@@ -68,10 +68,9 @@ const render = () => {
 }
 
 const updateBoard = () => {
-    board.forEach((value) => {
-        let idx = board.indexOf(value)
-        let square = squareEls[idx]
-        square.innerText = board[idx]
+    board.forEach((value,index) => {
+        let square = squareEls[index]
+        square.innerText = board[index]
         console.log(square.innerText)
     })
 }
@@ -121,7 +120,7 @@ const isItBlank = () => {
 }
 
 const checkForTie = () => {
-    if (winner === true || isItBlank !== true) {
+    if (winner === true || isItBlank() === true) {
         return
     } else tie = true
     }
